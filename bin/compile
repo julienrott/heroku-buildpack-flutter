@@ -82,17 +82,19 @@ if [ -z "$FLUTTER_BUILD" ]; then
   FLUTTER_BUILD="flutter build web --release --quiet"
 fi
 
+echo "begin bidouille phasse"
+cat $BUILD_DIR/env.json
+echo "write file"
+echo $ENV | tee $BUILD_DIR/env.json
+echo "after file write"
+cat $BUILD_DIR/env.json
+echo "end bidouille phase"
+
 print "Compiling the project with $FLUTTER_BUILD"
 eval $FLUTTER_BUILD | indent
 
-echo "begin bidouille phasse"
-ls -l
-cat $BUILD_DIR/assets/env.json
-echo "write file"
-echo $ENV | tee $BUILD_DIR/assets/env.json
-echo "after file write"
-cat $BUILD_DIR/assets/env.json
-echo "end bidouille phase"
+echo "after build"
+cat $BUILD_DIR/build/web/assets/env.json
 
 PUB_CACHE="$HOME/.pub-cache/"
 mkdir -p $PUB_CACHE
