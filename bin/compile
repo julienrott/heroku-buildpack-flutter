@@ -86,6 +86,7 @@ print "Compiling the project with $FLUTTER_BUILD"
 eval $FLUTTER_BUILD | indent
 
 echo "begin bidouille phasse"
+ls -l
 cat $BUILD_DIR/assets/env.json
 echo "write file"
 echo $ENV | tee $BUILD_DIR/assets/env.json
