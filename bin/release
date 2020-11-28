@@ -11,7 +11,6 @@ fi
 cat <<EOF
 ---
 default_process_types:
-    release: /app/assets/release-tasks.sh
-    web: /app/dart-sdk/bin/dart pub global run dhttpd --host 0.0.0.0 --port \$PORT --path ${DEPLOY_DIR}
+    web: $ENV | tee /app/assets/env.json && /app/dart-sdk/bin/dart pub global run dhttpd --host 0.0.0.0 --port \$PORT --path ${DEPLOY_DIR}
 
 EOF
